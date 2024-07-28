@@ -1,0 +1,341 @@
+<html><head><base href="https://websim.dev/zen/"><title>ZEN Infrastructure as a Service - Next-Gen Cloud Solutions</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #0f0;
+            --bg-color: #000;
+            --text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+            filter: drop-shadow(0 0 10px var(--primary-color));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .title {
+            font-size: 2.5em;
+            text-shadow: var(--text-shadow);
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .instruction {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 1.2em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .service-item {
+            width: 220px;
+            height: 220px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .service-item-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+
+        .service-item:hover .service-item-inner {
+            transform: rotateY(180deg);
+        }
+
+        .service-item-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            background-color: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .service-item-face.back {
+            transform: rotateY(180deg);
+            background-color: rgba(0, 255, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .service-title {
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        #infoPanel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: var(--primary-color);
+            padding: 30px;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+            max-height: 70%;
+            overflow-y: auto;
+            border-top: 2px solid var(--primary-color);
+            box-shadow: 0 -5px 20px rgba(0, 255, 0, 0.3);
+        }
+
+        #infoPanel.active {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 2em;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+        }
+
+        #infoTitle {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: var(--text-shadow);
+        }
+
+        #infoContent {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .title {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            .service-item {
+                width: 180px;
+                height: 180px;
+            }
+
+            .service-icon {
+                font-size: 2.5em;
+            }
+
+            .service-title {
+                font-size: 1em;
+            }
+        }
+    </style></head><body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="https://i.imgur.com/xfMdqOW.png" alt="ZEN Infrastructure Logo" class="logo">
+                <h1 class="title">ZEN Infrastructure</h1>
+            </div>
+            <p class="subtitle">Next-Generation Cloud Solutions</p>
+        </header>
+        <div class="instruction">Explore our cutting-edge offerings</div>
+        <div class="content">
+            <div class="service-item" onclick="showInfo('performance')">
+                <div class="service-item-inner">
+                    <div class="service-item-face">
+                        <div class="service-icon">🚀</div>
+                        <div class="service-title">High-Performance GPU Clusters</div>
+                    </div>
+                    <div class="service-item-face back">
+                        <div class="service-title">Tap for details</div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item" onclick="showInfo('chips')">
+                <div class="service-item-inner">
+                    <div class="service-item-face">
+                        <div class="service-icon">💻</div>
+                        <div class="service-title">Custom-Designed AI Chips</div>
+                    </div>
+                    <div class="service-item-face back">
+                        <div class="service-title">Tap for details</div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item" onclick="showInfo('efficiency')">
+                <div class="service-item-inner">
+                    <div class="service-item-face">
+                        <div class="service-icon">🌿</div>
+                        <div class="service-title">Energy-Efficient Computing</div>
+                    </div>
+                    <div class="service-item-face back">
+                        <div class="service-title">Tap for details</div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item" onclick="showInfo('scalability')">
+                <div class="service-item-inner">
+                    <div class="service-item-face">
+                        <div class="service-icon">📈</div>
+                        <div class="service-title">Scalable Infrastructure</div>
+                    </div>
+                    <div class="service-item-face back">
+                        <div class="service-title">Tap for details</div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item" onclick="showInfo('aiProcessor')">
+                <div class="service-item-inner">
+                    <div class="service-item-face">
+                        <div class="service-icon">🧠</div>
+                        <div class="service-title">On-Premise AI Processor</div>
+                    </div>
+                    <div class="service-item-face back">
+                        <div class="service-title">Tap for details</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="infoPanel">
+        <button class="close-btn" onclick="hideInfo()">×</button>
+        <h2 id="infoTitle"></h2>
+        <p id="infoContent"></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        const infoPanelContent = {
+            performance: {
+                title: "High-Performance GPU Clusters",
+                content: "ZEN's cutting-edge GPU clusters deliver unparalleled processing power for the most demanding AI workloads. Our optimized architecture enables faster training and inference for complex models, reducing time-to-insight and accelerating innovation. Experience the next level of computational performance with ZEN's high-performance computing solutions."
+            },
+            chips: {
+                title: "Custom-Designed AI Chips",
+                content: "Our proprietary AI chips represent the pinnacle of specialized computing. Engineered from the ground up for machine learning tasks, these chips offer superior performance and energy efficiency compared to general-purpose processors. ZEN's custom chips accelerate AI workloads while minimizing power consumption, providing a competitive edge in the rapidly evolving landscape of artificial intelligence."
+            },
+            efficiency: {
+                title: "Energy-Efficient Computing",
+                content: "At ZEN, we believe in responsible innovation. Our energy-efficient computing solutions prioritize sustainability without compromising on performance. By leveraging advanced cooling technologies, optimized power management, and eco-friendly data center designs, we significantly reduce the environmental impact of AI operations. Choose ZEN for a greener approach to high-performance computing."
+            },
+            scalability: {
+                title: "Scalable Infrastructure",
+                content: "ZEN's scalable infrastructure is built to grow with your ambitions. Our flexible architecture allows for seamless scaling of resources, ensuring your AI projects can expand without limitations or performance bottlenecks. Whether you're a startup with big dreams or an enterprise with evolving needs, our infrastructure adapts to your requirements, providing the perfect balance of power and flexibility."
+            },
+            aiProcessor: {
+                title: "On-Premise AI Processor",
+                content: "ZEN's On-Premise AI Processor is a game-changer for hospitals, universities, and research institutions. This powerful, dedicated hardware solution brings advanced AI capabilities in-house, eliminating the need for expensive subscriptions and API keys. With our AI Processor, you can run complex machine learning models, process large datasets, and power automation infrastructure locally, ensuring data privacy and reducing long-term costs. Experience the freedom of on-demand AI processing tailored to your specific needs, all while maintaining full control over your sensitive information."
+            }
+        };
+
+        function showInfo(key) {
+            const panel = document.getElementById('infoPanel');
+            const title = document.getElementById('infoTitle');
+            const content = document.getElementById('infoContent');
+            
+            title.textContent = infoPanelContent[key].title;
+            content.textContent = infoPanelContent[key].content;
+            
+            gsap.to(panel, {duration: 0.5, y: '0%', ease: 'power2.out'});
+        }
+
+        function hideInfo() {
+            const panel = document.getElementById('infoPanel');
+            gsap.to(panel, {duration: 0.5, y: '100%', ease: 'power2.in'});
+        }
+
+        // Animate items on load
+        window.onload = function() {
+            gsap.from('.logo', {duration: 1, y: -50, opacity: 0, ease: 'bounce'});
+            gsap.from('.title', {duration: 1, x: -50, opacity: 0, delay: 0.5});
+            gsap.from('.subtitle', {duration: 1, x: 50, opacity: 0, delay: 0.7});
+            gsap.from('.service-item', {
+                duration: 1,
+                scale: 0,
+                y: 100,
+                opacity: 0,
+                stagger: 0.2,
+                ease: 'back.out(1.7)',
+                delay: 1
+            });
+        }
+    </script>
+</body></html>
